@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Algo correu mal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:    #0d0f13;
+    --panel: #161820;
+    --line:  #252830;
+    --ink:   #e8eaf0;
+    --muted: #7a7f8e;
+    --faint: #353847;
+    --green: #4a9eff;
+    --red:   #e0533f;
+    --sal:   #e8eaf0;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  /* Faixa de topo — Portugal / Alcochete */
+  .faixa {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      #4a9eff 0%,
+      #7b6fff 50%,
+      #4a9eff 100%
+    );
+    opacity: .6;
+  }
+
+  /* Ícone de estado */
+  .icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: var(--panel);
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .icon-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(74,158,255,.12), transparent 70%);
+  }
+  .icon-wrap svg {
+    width: 34px;
+    height: 34px;
+    color: var(--red);
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: .01em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 280px;
+    margin-bottom: 32px;
+  }
+
+  .sub b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Card de informação */
+  .card {
+    width: 100%;
+    max-width: 320px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+
+  .card-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .card-row + .card-row {
+    border-top: 1px solid var(--faint);
+  }
+  .card-row .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot.red   { background: var(--red);   box-shadow: 0 0 6px var(--red); }
+  .dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot.dim   { background: var(--faint); }
+  .card-row .txt {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: left;
+    line-height: 1.4;
+  }
+  .card-row .txt b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* URL exibido */
+  .url-pill {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--faint);
+    font-size: 11px;
+    font-family: ui-monospace, "SF Mono", monospace;
+    color: var(--muted);
+    letter-spacing: .02em;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #url-box { margin-top: 4px; }
+
+  .footer {
+    font-size: 11px;
+    color: var(--faint);
+    margin-top: 8px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="faixa"></div>
+
+<div class="icon-wrap">
+  <!-- exclamation triangle -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+    <line x1="12" y1="9" x2="12" y2="13"/>
+    <line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+</div>
+
+<h1>Algo correu mal</h1>
+<p class="sub">
+  Ficaste nesta página por engano.<br>
+  Se estás a tentar entrar numa app e o problema persistir,<br>
+  <b>avisa o administrador.</b>
+</p>
+
+<div class="card">
+  <div class="card-row">
+    <span class="dot red"></span>
+    <span class="txt">Esta não é uma app — é o ponto de aterragem de segurança quando o OAuth não sabe para onde redirecionar.</span>
+  </div>
+  <div class="card-row">
+    <span class="dot dim"></span>
+    <span class="txt">Vieste de:
+      <span id="url-box"><span class="url-pill" id="ref-url">—</span></span>
+    </span>
+  </div>
+  <div class="card-row">
+    <span class="dot green"></span>
+    <span class="txt">Tenta aceder diretamente à app pelo link correto e volta a iniciar sessão.</span>
+  </div>
+</div>
+
+<p class="footer">diogoandrefsilva-ghc · github.io</p>
+
+<script>
+  // Mostrar URL de onde veio (referrer ou hash OAuth)
+  const box = document.getElementById('ref-url');
+  const hash = window.location.hash;
+  const ref  = document.referrer;
+
+  if (hash && hash.includes('error')) {
+    // OAuth devolveu erro — extrair descrição se disponível
+    const params = new URLSearchParams(hash.substring(1));
+    const desc   = params.get('error_description') || params.get('error') || 'erro de autenticação';
+    box.textContent = decodeURIComponent(desc).replace(/\+/g, ' ');
+    box.style.color = '#e0533f';
+    box.style.background = 'rgba(224,83,63,.12)';
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else if (ref) {
+    box.textContent = ref.length > 50 ? ref.slice(0, 47) + '…' : ref;
+  } else {
+    box.textContent = 'desconhecido';
+  }
+</script>
+
+</body>
+</html>
